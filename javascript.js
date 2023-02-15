@@ -20,6 +20,15 @@ function getComputerChoice() {
                                                 
 //     if playerOption === scissors && computerOption === paper: player wins
 //                                                    === rock: computer wins
-                                                   
+               
+function singleRound() {
+    let playerSelection = getPlayerChoice();
+    let computerSelection = getComputerChoice();
+    if (playerSelection === computerSelection) return 'draw';
+    else if (playerSelection === 'rock' && computerSelection ==='scissors' 
+        || playerSelection === 'paper' && computerSelection ==='rock' 
+        || playerSelection === 'scissors' && computerSelection ==='paper') return 'win';
+    else return 'lose';
+}
 // Fourth: declare winner:
 //     if playerPoints > computerPoints: player wins; else: computer wins
