@@ -22,13 +22,25 @@ function getComputerChoice() {
 //                                                    === rock: computer wins
                
 function singleRound() {
-    let playerSelection = getPlayerChoice();
-    let computerSelection = getComputerChoice();
-    if (playerSelection === computerSelection) return 'draw';
-    else if (playerSelection === 'rock' && computerSelection ==='scissors' 
-        || playerSelection === 'paper' && computerSelection ==='rock' 
-        || playerSelection === 'scissors' && computerSelection ==='paper') return 'win';
+    if (getPlayerChoice() === getComputerChoice()) return 'draw';
+    else if (getPlayerChoice() === 'rock' && getComputerChoice() ==='scissors' 
+        || getPlayerChoice() === 'paper' && getComputerChoice() ==='rock' 
+        || getPlayerChoice() === 'scissors' && getComputerChoice() ==='paper') return 'win';
     else return 'lose';
 }
-// Fourth: declare winner:
-//     if playerPoints > computerPoints: player wins; else: computer wins
+// Fourth: declare winner: ****ACTUALLY**** make a game with five rounds
+//     if playerPoints > computerPoints: player wins; else: computer wins INCOMPLETE: draw is possible
+
+function game() {
+    let playerPoints = 0;
+    let computerPoints = 0;
+    for (let i=0; i<5; i++) {
+        let result = singleRound()
+        if (result === 'win') {
+            playerPoints ++;
+        }
+        else if (result === 'lose') {
+            computerPoints ++;
+        }
+    }
+}
