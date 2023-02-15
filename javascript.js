@@ -1,4 +1,5 @@
 // First: Input player Option and save it in a variable
+let getPlayerChoice = () => prompt('Choose rock, paper or scissors').toLowerCase(); //prompt user option and store it in lower case
 
 // Second: make computer "choose" its option
 function getComputerChoice() {
