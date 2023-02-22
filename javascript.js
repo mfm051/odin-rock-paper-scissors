@@ -1,15 +1,27 @@
-// Input player choice and save it in a variable
-let getPlayerChoice = () => prompt('Choose rock, paper or scissors').toLowerCase(); //prompt user option and store it in lower case
-
-// Make computer "choose" its option
-function getComputerChoice() {
-    let possibleChoices = ['rock','paper','scissors'];
-    let choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
-    let choice = possibleChoices[choiceIndex];
+function getPlayerChoice (event) {
+    const choice = event.target.id;
+    const resultDiv = document.querySelector(".result.human").children[1];
+    if (resultDiv.classList.value === `option ${choice}`) return choice;
+    resultDiv.classList.toggle(choice);
     return choice;
 }
 
-// In each round the choices are compared
+function getComputerChoice() {
+    const possibleChoices = ['rock','paper','scissors'];
+    const choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
+    const choice = possibleChoices[choiceIndex];
+    const resultDiv = document.querySelector(".result.computer").children[1];
+    if (resultDiv.classList.value === `option ${choice}`) return choice;
+    resultDiv.classList.toggle(choice);
+    return choice;
+}
+
+const options = document.querySelectorAll("#rock, #paper, #scissors");
+options.forEach((option) => {   option.addEventListener("mousedown",getPlayerChoice);
+                                option.addEventListener("mouseup",getComputerChoice);
+                            }
+                );
+
                
 function singleRound() {
     playerSelection = getPlayerChoice();
