@@ -1,0 +1,50 @@
+/* * {
+    border: black solid;
+} */
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.option {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    border: black solid 5px;
+    border-radius: 10px;
+}
+
+.option.rock {
+    background: no-repeat center url('imgs/rocks.png');
+}
+
+.option.paper {
+    background: no-repeat center url('imgs/scroll.png');
+}
+
+.option.scissors {
+    background: no-repeat center url('imgs/scissors.png');
+}
+
+.result {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
