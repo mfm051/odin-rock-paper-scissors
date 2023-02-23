@@ -1,11 +1,16 @@
+let results = []
+
 function singleRound(event) {
-    
+    let humanChoice = event.target.id;
+
     function getComputerChoice() {
         let possibleChoices = ['rock','paper','scissors'];
         let choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
         let choice = possibleChoices[choiceIndex];
         return choice;
     };
+
+    let computerChoice = getComputerChoice();
 
     function printChoice(player) {
         let resultDiv = document.querySelector(`.result.${player}`).children[1];
@@ -14,8 +19,6 @@ function singleRound(event) {
         else return false;
     }
 
-    let humanChoice = event.target.id;
-    let computerChoice = getComputerChoice();
     printChoice('human');
     printChoice('computer');    
 
@@ -27,7 +30,40 @@ function singleRound(event) {
         else return 'lose';
     }
 
-    getResult(humanChoice, computerChoice);
+    let result = getResult(humanChoice, computerChoice);
+
+    function showResult (result) {
+        if (result === 'win') {
+            let img = document.createElement("img");
+            img.src = "imgs/win.png";
+            document.querySelector(".option.rounds").appendChild(img);
+        } else if (result === 'lose') {
+            let img = document.createElement("img");
+            img.src = "imgs/lose.png";
+            document.querySelector(".option.rounds").appendChild(img);
+        };
+    }
+
+    showResult(result);
+
+    if (result === "win" || result === "lose") results.push(result);
+
+    function getWinner (results) {
+       let winArray = results.filter(result => result === "win");
+       let loseArray = results.filter(result => result === "lose");
+       if (winArray.length > loseArray.length) return "human"
+       else return "computer";
+    }
+
+    function restartGame () {
+        document.querySelector(".option.rounds").textContent = "";
+    }
+
+    if (results.length === 5) {
+        console.log(getWinner(results));
+        results = [];
+        restartGame();
+    }  
 }
 
 const options = document.querySelectorAll("#rock, #paper, #scissors");
