@@ -7,7 +7,7 @@ function singleRound(event) {
         return choice;
     };
 
-    function printResult(player) {
+    function printChoice(player) {
         let resultDiv = document.querySelector(`.result.${player}`).children[1];
         if (player === "human") resultDiv.className = `option ${humanChoice}`
         else if (player === "computer") resultDiv.className = `option ${computerChoice}`
@@ -16,14 +16,18 @@ function singleRound(event) {
 
     let humanChoice = event.target.id;
     let computerChoice = getComputerChoice();
-    printResult('human');
-    printResult('computer')    
+    printChoice('human');
+    printChoice('computer');    
 
-    if (humanChoice === computerChoice) return 'draw';
-    else if (humanChoice === 'rock' && computerChoice ==='scissors' 
-        || humanChoice === 'paper' && computerChoice ==='rock' 
-        || humanChoice === 'scissors' && computerChoice ==='paper') return 'win';
-    else return 'lose';
+    function getResult(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) return 'draw';
+        else if (   humanChoice === 'rock' && computerChoice ==='scissors' ||
+                    humanChoice === 'paper' && computerChoice ==='rock' ||
+                    humanChoice === 'scissors' && computerChoice ==='paper') return 'win';
+        else return 'lose';
+    }
+
+    getResult(humanChoice, computerChoice);
 }
 
 const options = document.querySelectorAll("#rock, #paper, #scissors");
