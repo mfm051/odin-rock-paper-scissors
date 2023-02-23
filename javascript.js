@@ -1,8 +1,7 @@
 function getPlayerChoice (event) {
     const choice = event.target.id;
     const resultDiv = document.querySelector(".result.human").children[1];
-    if (resultDiv.classList.value === `option ${choice}`) return choice;
-    resultDiv.classList.toggle(choice);
+    resultDiv.className = `option ${choice}`;
     return choice;
 }
 
@@ -11,8 +10,7 @@ function getComputerChoice() {
     const choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
     const choice = possibleChoices[choiceIndex];
     const resultDiv = document.querySelector(".result.computer").children[1];
-    if (resultDiv.classList.value === `option ${choice}`) return choice;
-    resultDiv.classList.toggle(choice);
+    resultDiv.className = `option ${choice}`;
     return choice;
 }
 
@@ -22,7 +20,8 @@ options.forEach((option) => {   option.addEventListener("mousedown",getPlayerCho
                             }
                 );
 
-               
+                
+// Old code
 function singleRound() {
     playerSelection = getPlayerChoice();
     computerSelection = getComputerChoice();
