@@ -61,12 +61,20 @@ function getWinner (results) {
     let wins = results.filter(result => result === "win");
     let loses = results.filter(result => result === "lose");
 
-    if (wins > loses) return "human"
+    if (wins.length > loses.length) return "human"
     else return "computer";
 };
 
 function showWinner (winner) { //Simple version
-    alert(winner);
+    console.log(winner);
+
+    if (winner === "human") {
+        let computerImg = document.querySelector(".result.computer").children[0];
+        computerImg.src = "imgs/monitor.png";
+    } else {
+        let humanImg = document.querySelector(".result.human").children[0];
+        humanImg.src = "imgs/impatient.png";
+    }
 };
 
 function completeGame () {
