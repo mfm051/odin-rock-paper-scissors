@@ -1,70 +1,83 @@
-let gameResults = []
+function getHumanChoice (e) {
+    let humanChoice = e.target.id;
+    return humanChoice;
+}
 
-function singleRound(event) {
-    let humanChoice = event.target.id;
+function getComputerChoice() {
+    let possibleChoices = ['rock','paper','scissors'];
+    let choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
+    let computerChoice = possibleChoices[choiceIndex];
+    return computerChoice;
+};
 
-    function getComputerChoice() {
-        let possibleChoices = ['rock','paper','scissors'];
-        let choiceIndex = Math.floor(Math.random()*3); // random int between 0 and 2
-        let choice = possibleChoices[choiceIndex];
-        return choice;
+function printChoice(player, playerChoice) {
+    let resultDiv = document.querySelector(`.result.${player}`).children[1];
+    if (player === "human") resultDiv.className = `option ${playerChoice}`
+    else if (player === "computer") resultDiv.className = `option ${playerChoice}`
+    else return false;
+};
+
+function getRoundResult(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) return 'draw';
+    else if (   humanChoice === 'rock' && computerChoice ==='scissors' ||
+                humanChoice === 'paper' && computerChoice ==='rock' ||
+                humanChoice === 'scissors' && computerChoice ==='paper') return 'win';
+    else return 'lose';
+};
+
+function showRoundResult (result) {
+    if (result === 'win') {
+        let img = document.createElement("img");
+        img.src = "imgs/win.png";
+        document.querySelector(".option.rounds").appendChild(img);
+    } else if (result === 'lose') {
+        let img = document.createElement("img");
+        img.src = "imgs/lose.png";
+        document.querySelector(".option.rounds").appendChild(img);
     };
+};
 
+function singleRound(e) {
+    let humanChoice = getHumanChoice(e);
     let computerChoice = getComputerChoice();
 
-    function printChoice(player) {
-        let resultDiv = document.querySelector(`.result.${player}`).children[1];
-        if (player === "human") resultDiv.className = `option ${humanChoice}`
-        else if (player === "computer") resultDiv.className = `option ${computerChoice}`
-        else return false;
-    }
+    printChoice('human', humanChoice);
+    printChoice('computer', computerChoice);    
 
-    printChoice('human');
-    printChoice('computer');    
+    let roundResult = getRoundResult(humanChoice, computerChoice);
 
-    function getResult(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) return 'draw';
-        else if (   humanChoice === 'rock' && computerChoice ==='scissors' ||
-                    humanChoice === 'paper' && computerChoice ==='rock' ||
-                    humanChoice === 'scissors' && computerChoice ==='paper') return 'win';
-        else return 'lose';
-    }
-
-    let roundResult = getResult(humanChoice, computerChoice);
-
-    function showResult (result) {
-        if (result === 'win') {
-            let img = document.createElement("img");
-            img.src = "imgs/win.png";
-            document.querySelector(".option.rounds").appendChild(img);
-        } else if (result === 'lose') {
-            let img = document.createElement("img");
-            img.src = "imgs/lose.png";
-            document.querySelector(".option.rounds").appendChild(img);
-        };
-    }
-
-    showResult(roundResult);
-
-    if (roundResult === "win" || roundResult === "lose") gameResults.push(roundResult);
-
-    function getWinner (results) {
-       let winArray = results.filter(result => result === "win");
-       let loseArray = results.filter(result => result === "lose");
-       if (winArray.length > loseArray.length) return "human"
-       else return "computer";
-    }
-
-    function restartGame () {
-        document.querySelector(".option.rounds").textContent = "";
-    }
-
-    if (gameResults.length === 5) {
-        console.log(getWinner(gameResults));
-        gameResults = [];
-        restartGame();
-    }  
+    showRoundResult(roundResult);
+    return roundResult;
+    // if (roundResult === "win" || roundResult === "lose") gameResults.push(roundResult);  
 }
+
+// let gameResults = []
+
+// function showWinner (gameResults) {
+//     function getWinner (gameResults) {
+//         let winArray = gameResults.filter(result => result === "win");
+//         let loseArray = gameResults.filter(result => result === "lose");
+//         if (winArray.length > loseArray.length) return "human"
+//         else return "computer";
+//      };
+
+//     let winner = getWinner(gameResults);
+//     console.log(winner);
+// }
+
+// function restartGame () {
+//     document.querySelector(".option.rounds").textContent = "";
+//     let computerResultDiv = document.querySelector(".result.computer").children[1];
+//     let humanResultDiv = document.querySelector(".result.human").children[1];
+//     computerResultDiv.className = "option";
+//     humanResultDiv.className = "option";
+// }
+
+// if (gameResults.length === 5) {
+//     showWinner(gameResults);
+//     gameResults = [];
+//     restartGame();
+// }
 
 const options = document.querySelectorAll("#rock, #paper, #scissors");
 options.forEach((option) => {   option.addEventListener("mousedown",singleRound);
@@ -72,6 +85,8 @@ options.forEach((option) => {   option.addEventListener("mousedown",singleRound)
                             }
                 );
 
+// const h1 = document.querySelector('h1');
+// h1.addEventListener("mousedown", restartGame);
 
 // Old code
 

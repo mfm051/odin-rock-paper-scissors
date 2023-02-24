@@ -22,6 +22,10 @@ h1 {
     padding: 5px;
 }
 
+h1:hover {
+    transform: scale(1.02)
+}
+
 .container {
     display: flex;
     justify-content: center;
