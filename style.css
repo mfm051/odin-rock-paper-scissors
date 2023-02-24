@@ -32,9 +32,10 @@ h1 {
 .option {
     width: 150px;
     height: 150px;
-    border: black dashed 5px;
+    border: black solid 5px;
     border-radius: 10px;
     background-color:#BE6DC9;
+    box-shadow: inset 5px -5px 5px #993DA7;
 }
 
 .option:hover {
@@ -43,17 +44,14 @@ h1 {
 
 .option.rock {
     background: no-repeat center url('imgs/rocks.png') #BE6DC9;
-    border-style: solid;
 }
 
 .option.paper {
     background: no-repeat center url('imgs/scroll.png') #BE6DC9;
-    border-style: solid;
 }
 
 .option.scissors {
     background: no-repeat center url('imgs/scissors.png') #BE6DC9;
-    border-style: solid;
 }
 
 .result {
@@ -87,6 +85,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     flex: 0;
+    box-shadow: none;
 }
 
 footer a{
