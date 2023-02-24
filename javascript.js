@@ -47,73 +47,48 @@ function singleRound(e) {
     let roundResult = getRoundResult(humanChoice, computerChoice);
 
     showRoundResult(roundResult);
-    return roundResult;
-    // if (roundResult === "win" || roundResult === "lose") gameResults.push(roundResult);  
+    if (roundResult === "win" || roundResult === "lose") roundResults.push(roundResult);
+
+    if (roundResults.length === 5) {
+        completeGame();
+        restartGame();
+    };  
+};
+
+let roundResults = [];
+
+function getWinner (results) {
+    let wins = results.filter(result => result === "win");
+    let loses = results.filter(result => result === "lose");
+
+    if (wins > loses) return "human"
+    else return "computer";
+};
+
+function showWinner (winner) { //Simple version
+    alert(winner);
+};
+
+function completeGame () {
+    let winner = getWinner(roundResults);
+    showWinner(winner);
+};
+
+function clearResults () {
+    document.querySelector(".option.rounds").textContent = "";
+    let computerResultDiv = document.querySelector(".result.computer").children[1];
+    let humanResultDiv = document.querySelector(".result.human").children[1];
+    computerResultDiv.className = "option";
+    humanResultDiv.className = "option";
 }
 
-// let gameResults = []
-
-// function showWinner (gameResults) {
-//     function getWinner (gameResults) {
-//         let winArray = gameResults.filter(result => result === "win");
-//         let loseArray = gameResults.filter(result => result === "lose");
-//         if (winArray.length > loseArray.length) return "human"
-//         else return "computer";
-//      };
-
-//     let winner = getWinner(gameResults);
-//     console.log(winner);
-// }
-
-// function restartGame () {
-//     document.querySelector(".option.rounds").textContent = "";
-//     let computerResultDiv = document.querySelector(".result.computer").children[1];
-//     let humanResultDiv = document.querySelector(".result.human").children[1];
-//     computerResultDiv.className = "option";
-//     humanResultDiv.className = "option";
-// }
-
-// if (gameResults.length === 5) {
-//     showWinner(gameResults);
-//     gameResults = [];
-//     restartGame();
-// }
+function restartGame() {
+    clearResults();
+    roundResults = [];
+}
 
 const options = document.querySelectorAll("#rock, #paper, #scissors");
-options.forEach((option) => {   option.addEventListener("mousedown",singleRound);
-                                // option.addEventListener("mouseup",getComputerChoice);
-                            }
-                );
+options.forEach((option) => option.addEventListener("mousedown",singleRound));
 
-// const h1 = document.querySelector('h1');
-// h1.addEventListener("mousedown", restartGame);
-
-// Old code
-
-
-// Declare winner in a game with five rounds
-
-// function game() {
-//     let playerPoints = 0;
-//     let computerPoints = 0;
-//     for (let i=0; i<5; i++) {
-//         result = singleRound()
-//         if (result === 'win') {
-//             playerPoints ++;
-//             console.log(`Nice! ${playerSelection} beats ${computerSelection}`)
-//         }
-//         else if (result === 'lose') {
-//             computerPoints ++;
-//             console.log(`Ouch! ${playerSelection} loses to ${computerSelection}`)
-//         }
-//         else {
-//             console.log("It's a draw!")
-//         }
-//     };
-//     console.log(
-//         `Player points: ${playerPoints}\nComputer points: ${computerPoints}`
-//     );
-//     if (playerPoints === computerPoints) console.log("It's a draw!");
-//     if (playerPoints > computerPoints) console.log("You win! Congratulations!");
-//     if (playerPoints < computerPoints) console.log("You lose :(");
-// }
+const h1 = document.querySelector('h1');
+h1.addEventListener("mousedown", restartGame);
