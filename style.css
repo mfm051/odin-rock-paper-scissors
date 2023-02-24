@@ -12,9 +12,14 @@ body {
 }
 
 h1 {
-    color: #242424;
+    color: black;
     font-size: 55px;
     font-family: 'Yantramanav', sans-serif;
+    background-color: #BE6DC9;
+    border: black solid 5px;
+    border-radius: 10px;
+    box-shadow: inset 5px -5px 5px #993DA7;
+    padding: 5px;
 }
 
 .container {
@@ -63,6 +68,14 @@ h1 {
     justify-content: space-between;
     font-family: 'Yantramanav', sans-serif;
     color: #EAEAEA;
+}
+
+.result > img {
+    background-color: #BE6DC9;
+    padding: 5px;
+    border: 5px solid black;
+    border-radius: 20px;
+    box-shadow: inset 5px -5px 5px #993DA7;
 }
 
 .center {

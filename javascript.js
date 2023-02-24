@@ -1,4 +1,4 @@
-let results = []
+let gameResults = []
 
 function singleRound(event) {
     let humanChoice = event.target.id;
@@ -30,7 +30,7 @@ function singleRound(event) {
         else return 'lose';
     }
 
-    let result = getResult(humanChoice, computerChoice);
+    let roundResult = getResult(humanChoice, computerChoice);
 
     function showResult (result) {
         if (result === 'win') {
@@ -44,9 +44,9 @@ function singleRound(event) {
         };
     }
 
-    showResult(result);
+    showResult(roundResult);
 
-    if (result === "win" || result === "lose") results.push(result);
+    if (roundResult === "win" || roundResult === "lose") gameResults.push(roundResult);
 
     function getWinner (results) {
        let winArray = results.filter(result => result === "win");
@@ -59,9 +59,9 @@ function singleRound(event) {
         document.querySelector(".option.rounds").textContent = "";
     }
 
-    if (results.length === 5) {
-        console.log(getWinner(results));
-        results = [];
+    if (gameResults.length === 5) {
+        console.log(getWinner(gameResults));
+        gameResults = [];
         restartGame();
     }  
 }
