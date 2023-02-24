@@ -90,6 +90,7 @@ h1:hover {
 }
 
 .rounds {
+    margin-top: 50px;
     width: 75px;
     height: 250px;
     border: none;
@@ -97,7 +98,6 @@ h1:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 0;
     box-shadow: none;
 }
 
@@ -110,4 +110,22 @@ footer a{
 
 footer a:hover, footer a:visited {
     color: #5e3e63;
+}
+
+.result > .winner {
+    background-color: #25A132;
+    box-shadow: inset 5px -5px 5px #15681d;
+}
+
+.result > .loser {
+    background-color: #D13B1D;
+    box-shadow: inset 5px -5px 5px #742313;
+}
+
+.winner {
+    color: #25A132;
+}
+
+.loser {
+    color: #D13B1D;
 }

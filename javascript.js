@@ -51,7 +51,7 @@ function singleRound(e) {
 
     if (roundResults.length === 5) {
         completeGame();
-        restartGame();
+        setTimeout(restartGame, 550);
     };  
 };
 
@@ -67,13 +67,27 @@ function getWinner (results) {
 
 function showWinner (winner) { //Simple version
     console.log(winner);
+    let computerResultDiv = document.querySelector(".result.computer");
+    let computerImg = computerResultDiv.children[0];
+
+    let humanResultDiv = document.querySelector(".result.human")
+    let humanImg = humanResultDiv.children[0];
 
     if (winner === "human") {
-        let computerImg = document.querySelector(".result.computer").children[0];
+        humanImg.className = "winner";
+        humanResultDiv.className = "result human winner";
+
         computerImg.src = "imgs/monitor.png";
+        computerImg.className = "loser"
+        computerResultDiv.className = "result computer loser";
     } else {
-        let humanImg = document.querySelector(".result.human").children[0];
+        computerImg.className = "winner";
+        computerResultDiv.className = "result computer winner"
+
         humanImg.src = "imgs/impatient.png";
+        humanImg.className = "loser";
+        humanResultDiv.className = "result human loser";
+
     }
 };
 
@@ -91,6 +105,20 @@ function clearResults () {
 }
 
 function restartGame() {
+    let computerResultDiv = document.querySelector(".result.computer");
+    let computerImg = document.querySelector(".result.computer").children[0];
+
+    let humanResultDiv = document.querySelector(".result.human")
+    let humanImg = document.querySelector(".result.human").children[0];
+    
+    computerImg.src = "imgs/computer.png";
+    computerImg.className = "";
+    computerResultDiv.className = "result computer";
+
+    humanImg.src = "imgs/laugh.png";
+    humanImg.className = "";
+    humanResultDiv.className = "result human";
+
     clearResults();
     roundResults = [];
 }
